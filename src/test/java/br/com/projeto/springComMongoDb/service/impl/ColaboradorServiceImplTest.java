@@ -31,7 +31,7 @@ public class ColaboradorServiceImplTest {
     }
 
     @Test
-    void testCriar() {
+    void quandoCriar_entaoDeveAtribuirId() {
 
         colaborador = new Colaborador.ColaboradorBuilder()
                             .comDataNascimento(LocalDate.of(1990, 10, 05))
@@ -46,7 +46,11 @@ public class ColaboradorServiceImplTest {
     }
 
     @Test
-    void testObterColaboradorPorNome() {
+    void quandoObterObterColaboradorPorNome_entaoDeveConterCoaboradorCriado() {
+
+        List<Colaborador> colaboradoresDeletar = colaboradorServiceImpl.obterColaboradorPorNome("Colaborador - obter por nome");
+
+        colaboradoresDeletar.stream().forEach(c -> { colaboradorServiceImpl.deletarColaboradorPorCodigo(c.getCodigo()); });
 
         colaborador = new Colaborador.ColaboradorBuilder()
                             .comDataNascimento(LocalDate.of(1990, 10, 05))
@@ -56,16 +60,16 @@ public class ColaboradorServiceImplTest {
 
         colaborador = colaboradorServiceImpl.criar(colaborador);
         
-        Colaborador colabordorePorNome = colaboradorServiceImpl.obterColaboradorPorNome(colaborador.getNome()).get(0);
+        Colaborador colabordorPorNome = colaboradorServiceImpl.obterColaboradorPorNome(colaborador.getNome()).get(0);
 
-		assertAll("funcionario", () -> assertEquals(LocalDate.of(1990, 10, 05), colabordorePorNome.getDataNascimento()),
-                                            () -> assertEquals("Colaborador - buscar por nome", colabordorePorNome.getNome()),
-                                            () -> assertEquals(new BigDecimal("1000"), colabordorePorNome.getSalario()));
+		assertAll("colaborador", () -> assertEquals(LocalDate.of(1990, 10, 05), colabordorPorNome.getDataNascimento()),
+                                            () -> assertEquals("Colaborador - obter por nome", colabordorPorNome.getNome()),
+                                            () -> assertEquals(new BigDecimal("1000"), colabordorPorNome.getSalario()));
 
     }
 
     @Test
-    void testObterColaboradorPorRangeDeSalario() {
+    void quandoObterColaboradorPorRangeDeSalario_deveConterColaboradoresCriadosComORanger() {
 
         List<Colaborador> colaboradoresDeletar = colaboradorServiceImpl.obterColaboradorPorRangeDeSalario(new BigDecimal("987654321"), new BigDecimal("987654321"));
 
@@ -92,7 +96,7 @@ public class ColaboradorServiceImplTest {
     }
 
     @Test
-    void testObterPorCodigo() {
+    void quandoObterColaboradorPorCodigo_deveRetornarColaboradorComOCodigoDoColaboradorCriado() {
         
         colaborador = new Colaborador.ColaboradorBuilder()
                             .comDataNascimento(LocalDate.of(1980, 02, 23))
@@ -108,7 +112,7 @@ public class ColaboradorServiceImplTest {
     }
 
     @Test
-    void testObterTodos() {
+    void QuandoObterTodosOsColaboradores_deveRetornarTodosOsColaboradoresCriados() {
 
         colaboradorServiceImpl.deletarTodos();
 

@@ -160,6 +160,40 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "deletarTodos",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Claudio\",\r\n    \"dataNascimento\": \"01/05/1963\",\r\n    \"salario\": 90000,\r\n    \"supervisor\": {\r\n        \"codigo\": \"63c56e373250a56dd115c99b\"\r\n    }\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/colaboradores/por-codigo?codigo=63c7e9cc21d42e711d683b94",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"colaboradores",
+								"por-codigo"
+							],
+							"query": [
+								{
+									"key": "codigo",
+									"value": "63c7e9cc21d42e711d683b94"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
