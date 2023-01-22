@@ -85,8 +85,6 @@ public class ColaboradorServiceImplTest {
                             .construir();
         colaborador = colaboradorServiceImpl.criar(colaborador);
 
-        colaborador = colaboradorServiceImpl.criar(colaborador);
-        
         List<Colaborador> colaboradoresRetorno = colaboradorServiceImpl.obterColaboradorPorRangeDeSalario(new BigDecimal("987654321"), new BigDecimal("987654321"));
 
 		assertEquals(2, colaboradoresRetorno.size());
@@ -111,6 +109,33 @@ public class ColaboradorServiceImplTest {
 
     @Test
     void testObterTodos() {
+
+        colaboradorServiceImpl.deletarTodos();
+
+        colaborador = new Colaborador.ColaboradorBuilder()
+                            .comDataNascimento(LocalDate.of(1980, 02, 23))
+                            .comNome("Colaborador - ober todos - 1")
+                            .comSalario(new BigDecimal("15000"))
+                            .construir();
+        colaborador = colaboradorServiceImpl.criar(colaborador);
+
+        colaborador = new Colaborador.ColaboradorBuilder()
+                            .comDataNascimento(LocalDate.of(1990, 10, 05))
+                            .comNome("Colaborador - ober todos - 2")
+                            .comSalario(new BigDecimal("10000"))
+                            .construir();
+        colaborador = colaboradorServiceImpl.criar(colaborador);
+
+        colaborador = new Colaborador.ColaboradorBuilder()
+                            .comDataNascimento(LocalDate.of(1949, 02, 17))
+                            .comNome("Colaborador - ober todos - 3")
+                            .comSalario(new BigDecimal("10000"))
+                            .construir();
+        colaborador = colaboradorServiceImpl.criar(colaborador);
+
+        List<Colaborador> colaboradoresRetorno = colaboradorServiceImpl.obterTodos();
+
+		assertEquals(3, colaboradoresRetorno.size());
 
     }
 }

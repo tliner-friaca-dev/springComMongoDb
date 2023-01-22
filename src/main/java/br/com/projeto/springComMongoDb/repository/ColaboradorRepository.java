@@ -16,4 +16,5 @@ public interface ColaboradorRepository extends MongoRepository<Colaborador, Stri
     public List<Colaborador> findByNome(String nome);
 
     public Long deleteColaboradorByCodigo(String codigo);
+
 }

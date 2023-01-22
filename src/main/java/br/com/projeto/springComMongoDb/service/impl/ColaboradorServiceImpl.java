@@ -57,5 +57,11 @@ public class ColaboradorServiceImpl implements ColaboradorService{
     public Long deletarColaboradorPorCodigo(String codigo) {
         return this.colaboradorRepository.deleteColaboradorByCodigo(codigo);
     }
+
+    @Override
+    public void deletarTodos() {
+        this.colaboradorRepository.deleteAll();
+
+    }
     
 }

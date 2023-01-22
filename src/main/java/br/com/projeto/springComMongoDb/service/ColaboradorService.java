@@ -13,5 +13,6 @@ public interface ColaboradorService {
     public List<Colaborador>  obterColaboradorPorRangeDeSalario(BigDecimal de, BigDecimal ate);
     public List<Colaborador> obterColaboradorPorNome(String nome);
     public Long deletarColaboradorPorCodigo(String codigo);
+    public void deletarTodos();
     
 }

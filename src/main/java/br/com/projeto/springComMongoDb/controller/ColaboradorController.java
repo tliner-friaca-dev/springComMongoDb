@@ -56,4 +56,8 @@ public class ColaboradorController {
         return this.colaboradorService.deletarColaboradorPorCodigo(codigo);
     }
 
+    @DeleteMapping
+    public void deletarTodos() {
+        this.colaboradorService.deletarTodos();
+    }
 }
